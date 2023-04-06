@@ -24,5 +24,5 @@ jobs:
         curl -X POST \
         -H "Content-Type: application/json" \
         -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
-        -d @Azion%20-%20API%20Reference%20AAAAAAV3.postman_collection.json \
+        -d @azion-api-reference.json \
         https://api.postman.com/collections/24751531-51954a52-01da-4700-ad65-536a6388165c/runs

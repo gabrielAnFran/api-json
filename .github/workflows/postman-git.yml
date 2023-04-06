@@ -12,11 +12,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Download JSON file
+      run: curl -O https://raw.githubusercontent.com/gabrielAnFran/api-json/main/Azion%20-%20API%20Reference%20AAAAAAV3.postman_collection.json
 
     - name: Send JSON file to Postman API
       run: |
         curl -X POST \
         -H "Content-Type: application/json" \
         -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
-        -d "https://github.com/gabrielAnFran/api-json/blob/main/Azion%20-%20API%20Reference%20AAAAAAV3.postman_collection.json" \
+        -d "$(cat Azion%20-%20API%20Reference%20AAAAAAV3.postman_collection.json)" \
         https://api.postman.com/collections/24751531-51954a52-01da-4700-ad65-536a6388165c/runs

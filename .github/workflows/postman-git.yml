@@ -16,13 +16,12 @@ jobs:
     - name: Download JSON file
       run: curl -O https://github.com/gabrielAnFran/api-json/raw/main/azion-api-reference.json
 
-    - name: Change file permissions
-      run: chmod +r azion-api-reference.json
-
     - name: Send JSON file to Postman API
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
       run: |
         curl -X POST \
         -H "Content-Type: application/json" \
-        -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+        -H "X-Api-Key: $POSTMAN_API_KEY" \
         -d @azion-api-reference.json \
         https://api.postman.com/collections/24751531-51954a52-01da-4700-ad65-536a6388165c/runs
